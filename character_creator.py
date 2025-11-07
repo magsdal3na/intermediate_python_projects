@@ -1,7 +1,7 @@
 
 """This is a character creator program
    for three different games: Fallout,
-   D&D, and Sims. To start your character
+   D&D, and Sims 4. To start your character
    creation, please run the program."""
 
 #Fallout character creation
@@ -54,10 +54,10 @@ def fallout():
         except Exception:
           print("Please select a number value.")
           updated_stat = int(input())
-  
+
     #User's sum after their choices
     user_total_sum = sum(stats_dict.values())
-    #checking total amount for Fallout 4     
+    #checking total amount for Fallout 4
     if user_fallout_game.lower() == "yes":
       if user_total_sum == special_total_4:
         print(f"Your current stats are: {stats_dict}")
@@ -73,6 +73,51 @@ def fallout():
         difference_old = (special_total_older - user_total_sum)
         print(f"You have {difference_old} points to allocate.")
         print(f"Please add/subtract values until you have a total of {special_total_older}.")
+
+
+#function for Sims 4 character creation
+def sims_4():
+  print("""Notice:
+    This character creator includes
+    base game traits that are available
+    in CAS. None of the bonus traits
+    or pack specific traits are 
+    included in this creator.\n""")
+  print("""Please choose three traits
+  from the list below: \n""")
+  print("""Emotional:           Hobby:            Lifestyle:            Social:
+  - Active            - Bookworm         - Ambitious           - Good
+  - Cheerful          - Music Lover      - Art Lover           - Jealous 
+  - Creative          - Perfectionist    - Foodie              - Loner
+  - Genius            - Loves Outdoors   - Neat                - Evil 
+  - Gloomy            - Geek             - Lazy                - Bro 
+  - Goofball                             - Slob 
+  - Hot-Headed                           - Materialistic 
+  - Romantic                             - Outgoing
+                                         - Noncommittal
+                                         - Self-Assured
+                                         - Hates Children
+                                         - Family-Oriented
+                                         - Clumsy\n""")
+  #dictionary to hold traits
+  traits_dict = {}
+  traits_dict["Emotional"] = ("Active", "Cheerful", "Creative", "Genius", "Gloomy", "Goofball", "Hot-Headed", "Romantic")
+  traits_dict["Hobby"] = ("Bookworm", "Music Lover", "Perfectionist", "Loves Outdoors", "Geek")
+  traits_dict["Lifestyle"] = ("Ambitious", "Art Lover", "Foodie", "Neat", "Lazy", "Slob", "Materialistic", "Outgoing", "Noncommittal", "Self-Assured", "Hates Children", "Family-Oriented", "Clumsy")
+  traits_dict["Social"] = ("Good", "Jealous", "Loner", "Evil", "Bro")
+
+  #user chosen traits
+  while True:
+    try:
+      trait_1 = str(input())
+      if trait_1.capitalize() in traits_dict.values():
+        break
+      else:
+        print("That is not a valid trait. Please try again.")
+    except Exception:
+      print("That is not a valid response.")
+  trait_2 = str(input())
+  trait_3 = str(input())
 
 print("""Welcome to the Character Creator!
 This program will help you customize
@@ -92,12 +137,12 @@ while True:
       break
     if game_choice.lower() == "sims":
       print("You've chosen Sims.")
+      sims_4()
       break
     else:
       print("That is not a valid game.\nPlease try again.")
       continue
   except Exception:
     print("That is not a valid response.")
- 
-  
-  
+
+
