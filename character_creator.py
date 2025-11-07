@@ -81,18 +81,17 @@ def sims_4():
     This character creator includes
     base game traits that are available
     in CAS. None of the bonus traits
-    or pack specific traits are 
+    or pack specific traits are
     included in this creator.\n""")
-  print("""Please choose three traits
-  from the list below: \n""")
+  print("""Please choose three traits\nfrom the list below: \n""")
   print("""Emotional:           Hobby:            Lifestyle:            Social:
   - Active            - Bookworm         - Ambitious           - Good
-  - Cheerful          - Music Lover      - Art Lover           - Jealous 
+  - Cheerful          - Music Lover      - Art Lover           - Jealous
   - Creative          - Perfectionist    - Foodie              - Loner
-  - Genius            - Loves Outdoors   - Neat                - Evil 
-  - Gloomy            - Geek             - Lazy                - Bro 
-  - Goofball                             - Slob 
-  - Hot-Headed                           - Materialistic 
+  - Genius            - Loves Outdoors   - Neat                - Evil
+  - Gloomy            - Geek             - Lazy                - Bro
+  - Goofball                             - Slob
+  - Hot-Headed                           - Materialistic
   - Romantic                             - Outgoing
                                          - Noncommittal
                                          - Self-Assured
@@ -106,18 +105,35 @@ def sims_4():
   traits_dict["Lifestyle"] = ("Ambitious", "Art Lover", "Foodie", "Neat", "Lazy", "Slob", "Materialistic", "Outgoing", "Noncommittal", "Self-Assured", "Hates Children", "Family-Oriented", "Clumsy")
   traits_dict["Social"] = ("Good", "Jealous", "Loner", "Evil", "Bro")
 
+  #converting the dictionary to lowercase
+  lowercase_traits = set()
+  for trait_tuple in traits_dict.values():
+    for trait in trait_tuple:
+      lowercase_traits.add(trait.lower())
+
   #user chosen traits
   while True:
-    try:
-      trait_1 = str(input())
-      if trait_1.capitalize() in traits_dict.values():
-        break
-      else:
-        print("That is not a valid trait. Please try again.")
-    except Exception:
-      print("That is not a valid response.")
-  trait_2 = str(input())
-  trait_3 = str(input())
+    trait_1 = input()
+    if trait_1.lower() in lowercase_traits:
+      break
+    else:
+      print("That is not a valid trait. Please try again.")
+
+  while True:
+    trait_2 = input()
+    if trait_2.lower() in lowercase_traits and (trait_2 != trait_1):
+      break
+    else:
+      print("That is not a valid trait. Please try again.")
+
+  while True:
+    trait_3 = input()
+    if trait_3.lower() in lowercase_traits and (trait_3 != trait_1) and (trait_3 != trait_2):
+      break
+    else:
+      print("That is not a valid trait. Please try again.")
+
+  print(f"Your sim's traits are: {trait_1}, {trait_2}, and {trait_3}")
 
 print("""Welcome to the Character Creator!
 This program will help you customize
